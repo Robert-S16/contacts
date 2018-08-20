@@ -1,5 +1,5 @@
 #to run app 
-    you need to have installed NODE.JS MONGODB on your PC;
+ ou need to have installed NODE.JS MONGODB on your PC;
 
 
 # install packges from NPM
