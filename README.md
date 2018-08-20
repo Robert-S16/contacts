@@ -6,4 +6,4 @@
  To install need to 'npm run app-install'
 
  # to run app  
-    call 'npm start' from root folder
+    call 'npm start'
