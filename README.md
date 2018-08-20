@@ -1,4 +1,4 @@
-#to run app 
+# to run app 
  ou need to have installed NODE.JS MONGODB on your PC;
 
 
