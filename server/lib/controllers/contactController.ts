@@ -1,12 +1,12 @@
 import * as mongoose from 'mongoose';
-import { ContactSchema } from '../models/crmModel';
+import { ContactSchema } from '../models/contactModel';
 import { Request, Response } from 'express';
 
 const Contact = mongoose.model('Contact', ContactSchema);
 
 export class ContactDBController {
         
-    public getContacts (req: Request, res: Response) {           
+    public getContacts (req: Request, res: Response, verifyer) {           
         Contact.find({}, (err, contact) => {
             if(err){
                 res.send(err);
@@ -46,7 +46,7 @@ export class ContactDBController {
     }
     
     public deleteContact (req: Request, res: Response) {           
-        Contact.remove({ _id: req.params.contactId }, (err, contact) => {
+        Contact.remove({ _id: req.params.contactId }, (err) => {
             if(err){
                 res.send(err);
             }

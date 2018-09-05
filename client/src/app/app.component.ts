@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './services/auth.service';
 import * as $ from 'jquery';
 
 @Component({
@@ -8,4 +9,7 @@ import * as $ from 'jquery';
 })
 export class AppComponent {
   title = 'contact manager';
+
+
+  constructor (private _auth: AuthService) {}
 }

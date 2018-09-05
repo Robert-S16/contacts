@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { _ } from 'underscore';
 
-import { Contact } from '../models/contact.model';
-import { Contacts } from '../models/fake-data.contacts';
-import { ContactService } from '../services/contacts.service';
+import { Contact } from '../../models/contact.model';
+import { ContactService } from '../../services/contacts.service';
 import { Observable } from 'rxjs';
+import { HTTP_INTERCEPTORS, HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contacts-list',
@@ -13,14 +14,13 @@ import { Observable } from 'rxjs';
 })
 
 export class ContactsListComponent implements OnInit {
-  // contacts = Contacts;
   public contacts = [];
 
   selectedContact: Contact;
   rConfirm: string;
   isNewContact: boolean;
 
-  constructor(private contactService: ContactService) {
+  constructor(private contactService: ContactService, private _router: Router) {
     this.rConfirm = '';
     this.isNewContact = false;
   }
@@ -34,6 +34,13 @@ export class ContactsListComponent implements OnInit {
       .subscribe(
         data => {
           this.contacts = data;
+        },
+        err => {
+          if (err instanceof HttpErrorResponse) {
+            if (err.status === 401) {
+              this._router.navigate(['/login']);
+            }
+          }
         }
       );
   }
